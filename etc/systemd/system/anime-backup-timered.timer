@@ -1,0 +1,10 @@
+[Unit]
+Description=Simple Animelist Backup Timer
+Requires=anime-backup.service
+
+[Timer]
+OnActiveSec=30min
+OnUnitInactiveSec=30min
+
+[Install]
+WantedBy=timers.target

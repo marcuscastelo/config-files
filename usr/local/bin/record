@@ -1,0 +1,5 @@
+#!/bin/bash
+filename="$AUDIO_RECORDINGS_PATH/$(date --iso-8601=seconds | sed "s/:/-/g").mp3"
+echo "Recording as $filename" 
+echo "file://$filename" | tr -d '\n' | xsel --clipboard
+parec --format=s16le -d alsa_output.pci-0000_00_1f.3.analog-stereo.monitor | lame -r --quiet -q 3 --lowpass 17 --abr 192 - "$filename"

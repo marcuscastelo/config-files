@@ -1,0 +1,5 @@
+#!/bin/bash
+killall -q parec lame
+if [ "$?" -eq 0 ]; then
+	notify-send "Stopping Recording";
+fi

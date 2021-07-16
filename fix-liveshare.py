@@ -1,3 +1,9 @@
+''' 
+All credits go to alfredopalhares <alfredo@palhares.me>
+who kindly made this short script to fix vscode in this issue:
+https://github.com/MicrosoftDocs/live-share/issues/262
+'''
+
 import os
 import json
 

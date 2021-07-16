@@ -108,13 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias k="kstart5 konsole &>/dev/null"
-
-
-
-
-
-
+source ~/.aliases
 
 
 # ------------------ Manually installed plugins ------------------- #

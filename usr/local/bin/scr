@@ -1,0 +1,52 @@
+#!/bin/python
+
+import argparse as ap
+import os
+import sys
+import pathlib
+import subprocess as sp
+
+PROG='scr'
+ENV_VAR='TMP_SCR_FOLDER'
+
+global default_folder
+try:
+    default_folder = os.environ[ENV_VAR]
+except:
+    default_folder = '/tmp/' + PROG
+
+parser = ap.ArgumentParser(
+    prog=PROG,
+    description="Records the screen with ffcast and audio with parec",
+    usage="%(prog)s [OPTIONS]",
+    argument_default=ap.SUPPRESS)
+
+parser.add_argument('-f', "--folder", type=pathlib.Path, help="overwrites environment variable " + ENV_VAR)
+
+args = parser.parse_args()
+
+
+folder = args.folder if 'folder' in args else default_folder
+
+sp.run(('mkdir -p '+folder).split())
+
+# print(folder)
+recv = sp.Popen(['ffcast', '-w', 'rec', folder + '/test.mp4'], stdout=sp.)
+
+print("Waiting")
+while True:
+    line = recv.communicate()[0]
+    print("Line: ->>> " + line)
+    if 'saving to file' in line:
+        break
+
+print("Started")
+
+reca = sp.Popen(['record', '-o', folder + '/test.mp3'])
+
+
+recv.kill()
+reca.kill()
+recv.wait()
+reca.wait()
+exit()

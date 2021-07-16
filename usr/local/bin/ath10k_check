@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Simple bash script to restart ath10k kernel modules.
+# ath10k is the module responsible for my wifi card and sometimes
+# on boot it just won't work even though it shows "connected".
+# In this case (that happens 10% of the time), it's enough to restart the module. 
+
+# This script checks if it is possible to ping Cloudflare DNS server (1.1.1.1)
+# If it is not possible, it means there is no internet available (the servers are probably not down). 
+# Therefore, try to restart ath10k_pci and ath10k_core modules.
+# But if it is possible and the problem is DNS (i.e. google.com is not available), restarting ath10k module won't help.
+
+ping -c 1 1.1.1.1 > /dev/null
+hascon=$? 
+[ "$hascon" -eq "0" ] && (
+	ping -c 1 "google.com" > /dev/null
+	hasdns=$?
+	[ "$hasdns" -eq "0" ] && 
+	echo "OK" || echo "Can't ping google.com: DNS problems (aborting)"
+) || (
+	echo "Couldn't ping 1.1.1.1, trying to restart ath10k kernel modules"
+
+	echo "Disabling ath10k_pci" &&
+	sudo modprobe -r ath10k_pci &&
+	echo "Disabling ath10k_core" &&
+	sudo modprobe -r ath10k_core &&
+	echo "Enabling ath10k_core" &&
+	sudo modprobe ath10k_core &&
+	echo "Enabling ath10k_pci" &&
+	sudo modprobe ath10k_pci &&
+	echo "Success" ||
+	echo "Failure :("
+);

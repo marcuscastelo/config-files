@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+function notify {
+	notify-send -u normal -i "/usr/share/icons/breeze-dark/actions/16/exception.svg" -t 4000 "$1" "$2" \
+	&& pacmd play-file /usr/share/sounds/freedesktop/stereo/message.oga 0
+}
+
+
+(inxi -Bxx | grep Discharging) \
+&& notify "Disconnected!!" "A/C Plug disconnected! Discharging!" \
+|| notify "Connected" "A/C Plug connected. Charging"

@@ -1,3 +1,9 @@
 
 alias k="kstart5 konsole &>/dev/null"
 alias rand='od -t uI -N 4 /dev/urandom | awk '"'"'{print $2}'"'"
+
+function uspname() {
+	id="$(($1 * 2 + 3 ))"
+	echo $(wget --server-response https://www.icmc.usp.br/pessoas\?id\=$id 2>&1) | egrep -Eo 'imgNome=([A-Za-zçáéíóúãĩõũêâîûâñÇÁÉÍÓÚÃĨÕŨÊÂÎÛÂÑ +]+)' | sed 's/\+/ /g' | sed 's/imgNome=//g'
+}
+

@@ -1,6 +1,7 @@
 
 alias k="kstart5 konsole &>/dev/null"
 alias rand='od -t uI -N 4 /dev/urandom | awk '"'"'{print $2}'"'"
+alias anki='XDG_CURRENT_DESKTOP=GNOME anki'
 
 function uspname() {
 	id="$(($1 * 2 + 3 ))"

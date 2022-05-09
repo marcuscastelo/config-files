@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ "$#" -eq 0 ]; then
+	echo "You must specify the number of seconds to record (-1 for infinity)"; exit;
+elif [ "$#" -gt 1 ]; then
+	echo "Too many arguments"; exit;
+fi
+
+if [ "$1" -lt -1 ]; then
+	echo "Invalid negative time"; exit;
+fi
+
+
+record & disown; 
+notify-send "Started Recording"
+
+if [ "$1" -ne -1 ]; then
+	echo "Stopping in $1 seconds"; 
+	sleep $1 && recstop
+fi
+

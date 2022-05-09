@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z "$(ip a | grep vpn0 | grep DOWN)" ]
+then
+	echo "VPN is up, everything should be working..." 
+else
+	echo "VPN is down, reconnecting"
+	vpn-reconnect
+fi

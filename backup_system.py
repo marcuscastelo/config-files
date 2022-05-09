@@ -212,7 +212,11 @@ def backup(tree_path: str, sys_path: str, dest_path: 'str') -> 'None':
 if __name__ == '__main__':
     cwd = os.getcwd()
     backup(
-        tree_path=os.path.join(cwd, 'backup'),
+        tree_path=os.path.join(cwd, 'backup_old'),
         sys_path=os.path.join(cwd, '/'),
         dest_path=os.path.join(cwd, 'backup2')
     )
+
+
+# TODO: if not foudn on sys_path, copy from tree_path (to avoid removing valid files)
+# TODO: "install" tree_path to sys_path (reverse of backup)

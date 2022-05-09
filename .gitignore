@@ -1,3 +1,4 @@
 .vscode/
 failed_files.txt
-backup_backup*
+backup*
+system

@@ -22,18 +22,24 @@ BACKUP_FOLDER = 'backup'
 
 @dataclass
 class ProjectTree:
+    base_path: str
     parent: Union['ProjectTree', None]
     folders: 'list[ProjectTree]'
     files: 'list[str]'
     name: 'str'
 
-    @property
-    def fullname(self) -> str:
-        return self.name
-        # if self.parent is None:
-        #     return self.name
+   
 
-        # return os.path.join(self.parent.fullname, self.name)
+    @property
+    def relative_path(self) -> str:
+        if self.parent is None:
+            return self.name
+
+        return os.path.join(self.parent.relative_path, self.name)
+
+    @property
+    def abs_path(self) -> str:
+        return os.path.join(self.base_path, self.relative_path)
 
     def __post_init__(self):
         self._depth = 0 if self.parent is None else self.parent._depth + 1
@@ -41,7 +47,7 @@ class ProjectTree:
     def to_string(self, max_depth: int = -1) -> str:
         if max_depth > 0 and self._depth > max_depth:
             return ''
-        ret = f'{self.name}'
+        ret = f'{self.relative_path}'
         if self.files:
             for file in self.files:
                 ret += f'\n\t{file}'
@@ -61,24 +67,29 @@ class ProjectTree:
     def __repr__(self) -> str:
         return self.to_string()
 
-def create_project_tree(tree_path: str, base_path_remove: str, parent: Union[ProjectTree, None]) -> ProjectTree:
+def create_project_tree(tree_real_path: str, base_path: str, parent: Union[ProjectTree, None]) -> ProjectTree:
     '''
     This function creates the project tree.
     '''
 
     # Remove base path from the tree path
-    tree_path = tree_path.replace(base_path_remove, '') or '.'
-    tree_path = os.path.normpath(tree_path)
+    tree_proj_path = tree_real_path.replace(base_path, '') or '.'
+    tree_proj_path = tree_proj_path.lstrip('/')
+    tree_proj_path = tree_proj_path.lstrip('\\')
+    tree_proj_path = tree_proj_path.rstrip('/')
+    tree_proj_path = tree_proj_path.rstrip('\\')
+
+    tree_proj_path = os.path.normpath(tree_proj_path)
 
     # Create the project tree
-    LOGGER.log_trace(f'Creating project tree for {tree_path=}')
-    folder_tree = ProjectTree(parent=parent, folders=[], files=[], name=tree_path)
+    LOGGER.log_trace(f'Creating project tree for {tree_proj_path=}')
+    folder_tree = ProjectTree(base_path=base_path, parent=parent, folders=[], files=[], name=os.path.basename(tree_proj_path))
 
     # Get the files and folders in the current folder
-    prefixed = lambda basename: os.path.join(tree_path, basename)
+    prefixed_real = lambda basename: os.path.join(tree_real_path, basename)
 
-    files = [file for file in os.listdir(tree_path) if os.path.exists(prefixed(file)) and os.path.isfile(prefixed(file))]
-    folders = [folder for folder in os.listdir(tree_path) if os.path.exists(prefixed(folder)) and os.path.isdir(prefixed(folder))]
+    files = [file for file in os.listdir(tree_real_path) if os.path.exists(prefixed_real(file)) and os.path.isfile(prefixed_real(file))]
+    folders = [folder for folder in os.listdir(tree_real_path) if os.path.exists(prefixed_real(folder)) and os.path.isdir(prefixed_real(folder))]
 
     # Add the files and folders to the folder tree
     folder_tree.files = files
@@ -86,8 +97,8 @@ def create_project_tree(tree_path: str, base_path_remove: str, parent: Union[Pro
     # Add the folders to the folder tree
     for folder in folders:
         folder_tree.folders.append(create_project_tree(
-            tree_path=os.path.join(tree_path, folder),
-            base_path_remove=base_path_remove,
+            tree_real_path=os.path.join(tree_real_path, folder),
+            base_path=base_path,
             parent=folder_tree
         ))
 
@@ -102,32 +113,33 @@ def remove_project_ignored_files(project_tree: ProjectTree, ignored_files: 'list
     project_tree.files = [file for file in project_tree.files if file not in ignored_files]
 
     # print([os.path.join(project_tree.name, os.path.basename(folder.name)) for folder in project_tree.folders])
-    invalid_folders = [ os.path.normpath(os.path.join(project_tree.name, invalid_folder)) for invalid_folder in ignored_files ]
-    project_tree.folders = [ folder for folder in project_tree.folders if folder.name not in invalid_folders ]
+    invalid_folders = [ os.path.normpath(os.path.join(project_tree.relative_path, invalid_folder)) for invalid_folder in ignored_files ]
+    project_tree.folders = [ folder for folder in project_tree.folders if folder.relative_path not in invalid_folders ]
 
 
-def copy_folder_tree_from_system(folder_tree: ProjectTree, system_root: str, dest_path: str) -> None:
+def copy_folder_tree_from_system(folder_tree: ProjectTree, system_root: str, dest_root: str) -> None:
     '''
     This function copies the folder tree from the system.
     '''
 
-    LOGGER.log_trace(f'@copy_folder_tree_from_system: {folder_tree.fullname=}')
+    LOGGER.log_trace(f'@copy_folder_tree_from_system: {folder_tree.relative_path=}, {system_root=}, {dest_root=}')
+    rel_path = folder_tree.relative_path
+    dest_folder = os.path.normpath(os.path.join(dest_root, rel_path))
 
     # Create the folder in the destination path
-    LOGGER.log_trace(f'Creating destination folder {dest_path}')
-    dest_folder_fullname = os.path.join(dest_path, folder_tree.fullname)
-    if not os.path.exists(dest_folder_fullname):
+    LOGGER.log_trace(f'Creating destination folder {dest_folder}')
+    if not os.path.exists(dest_folder):
         # Create the folder recursively
-        os.makedirs(dest_folder_fullname)
+        os.makedirs(dest_folder)
     
     # Copy the files in the folder tree
     LOGGER.log_trace(f'Inner files: {folder_tree.files=}')
     for file in folder_tree.files:
-        file_fullname = os.path.normpath(os.path.join(folder_tree.fullname, file))
-        dest_file_fullname = os.path.normpath(os.path.join(dest_path, folder_tree.fullname, file))
-        system_file_fullname = os.path.normpath(os.path.join(system_root, folder_tree.fullname, file))
-        
+        relative_path = os.path.join(rel_path, file)
 
+        file_fullname = os.path.normpath(os.path.join(relative_path))
+        dest_file_fullname = os.path.normpath(os.path.join(dest_root, relative_path))
+        system_file_fullname = os.path.normpath(os.path.join(system_root, relative_path))
 
         LOGGER.log_trace(f'Copying file {file_fullname} from {system_file_fullname} to {dest_file_fullname}')
         if not os.path.exists(system_file_fullname):
@@ -150,7 +162,13 @@ def copy_folder_tree_from_system(folder_tree: ProjectTree, system_root: str, des
 
     # Copy the folders in the folder tree
     for folder in folder_tree.folders:
-        copy_folder_tree_from_system(folder, system_root, os.path.join(dest_path, folder_tree.name))
+        LOGGER.log_trace(f'Recurse in inner folder: {folder.relative_path=}')
+        copy_folder_tree_from_system(
+            folder_tree=folder, 
+            system_root=system_root,
+            dest_root=dest_root,
+        )
+        # break
 
 
 # Create the backup
@@ -163,8 +181,8 @@ def backup(tree_path: str, sys_path: str, dest_path: 'str') -> 'None':
     # Create the project tree
     LOGGER.log_trace(f'Creating the project tree from {tree_path}')
     project_tree = create_project_tree(
-        tree_path=tree_path, # /home/user/project
-        base_path_remove=tree_path, # e.g. /home/user/project/folder -> folder
+        tree_real_path=tree_path, # /home/user/project
+        base_path=tree_path, # e.g. /home/user/project/folder -> folder
         parent=None # Root folder doesn't have a parent
     )
 
@@ -195,6 +213,6 @@ if __name__ == '__main__':
     cwd = os.getcwd()
     backup(
         tree_path=os.path.join(cwd, 'backup'),
-        sys_path='/',
-        dest_path=os.path.join(cwd, 'backup')
+        sys_path=os.path.join(cwd, 'system'),
+        dest_path=os.path.join(cwd, 'backup2')
     )

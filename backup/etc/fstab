@@ -1,14 +1,12 @@
-# /dev/nvme0n1p4
-UUID=e352c59e-0f5b-48cd-a246-11ee5dca6e78	/         	ext4      	rw,relatime	0 1
+# UUID=27a921f1-30b9-4bf1-8b51-32c555a26d35
+/dev/nvme0n1p3      	/         	ext4      	rw,relatime	0 1
 
-# /dev/nvme0n1p1 LABEL=ESP
-UUID=049C-AEC6      	/boot/efi 	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
+/dev/nvme0n1p1      	/efi      	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
 
-# /dev/nvme0n1p5 LABEL=Linux\134x20Swap
-UUID=8ea6ebd5-e91e-4888-99df-8695cc9b767b	none      	swap      	defaults  	0 0
+# UUID=5e5d169c-01df-4aa7-8bb9-9f1a6a76d3e4
+/dev/nvme0n1p2  	none      	swap      	defaults  	0 0
 
-# /dev/nvme0n1p3
-UUID=5CECB3C704F7FEDD	/dados	ntfs	defaults 0 2
+/dev/sda2                                   /hd_home   ext4   users                                                                                                       0 0 
 
-# /dev/sda2
-UUID=b0c10cb0-34ac-437e-a092-656b62d663cd /hd_home ext4	defaults 0 2
+/hd_home/marucs/Development		    /home/marucs/Development	none	bind	0	0
+

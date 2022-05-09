@@ -213,6 +213,6 @@ if __name__ == '__main__':
     cwd = os.getcwd()
     backup(
         tree_path=os.path.join(cwd, 'backup'),
-        sys_path=os.path.join(cwd, 'system'),
+        sys_path=os.path.join(cwd, '/'),
         dest_path=os.path.join(cwd, 'backup2')
     )

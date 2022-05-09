@@ -95,16 +95,11 @@ load-module module-gsettings
 .fail
 .endif
 
-
 ### Automatically restore the default sink/source when changed by the user
 ### during runtime
 ### NOTE: This should be loaded as early as possible so that subsequent modules
 ### that look up the default sink/source get the right value
 load-module module-default-device-restore
-
-### Automatically move streams to the default sink if the sink they are
-### connected to dies, similar for sources
-load-module module-rescue-streams
 
 ### Make sure we always have a sink around, even if it is a null sink.
 load-module module-always-sink
@@ -141,20 +136,30 @@ load-module module-filter-apply
 #set-default-sink output
 #set-default-source input
 
+### Allow including a default.pa.d directory, which if present, can be used
+### for additional configuration snippets.
+.nofail
+.include /etc/pulse/default.pa.d
 
-## Default to headset mic and phone
-# set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
-# set-sink-port alsa_output.pci-0000_00_1f.3.analog-stereo analog-output-headphones
+
+
+
+
+
+
+
+
+
+
 
 # jogo -> Virtual 1 (sai pro fone) -> Virtual 2 (mudar volume) -> Virtual 3 (junta com mic) -> discord
-
-load-module module-null-sink sink_name=virtual1 sink_properties=device.description="virtual1"
-load-module module-null-sink sink_name=virtual2 sink_properties=device.description="virtual2"
-load-module module-null-sink sink_name=virtual3 sink_properties=device.description="virtual3"
+load-module module-null-sink media.class=Audio/Sink sink_name=virtual1 channel_map=surround-51 sink_properties=device.description="virtual1"
+load-module module-null-sink media.class=Audio/Sink sink_name=virtual2 channel_map=surround-51 sink_properties=device.description="virtual2"
+load-module module-null-sink media.class=Audio/Sink sink_name=virtual3 channel_map=surround-51 sink_properties=device.description="virtual3"
 
 # Now create the loopback devices, all arguments are optional and can be configured with pavucontrol
 
-load-module module-loopback source=virtual1.monitor sink="alsa_output.pci-0000_00_1f.3.analog-stereo"
+load-module module-loopback source=virtual1.monitor sink="alsa_output.pci-0000_00_1f.3.analog-stereo" sink_properties=device.description="v2toA"
 load-module module-loopback source=virtual1.monitor sink=virtual2
 load-module module-loopback source=virtual2.monitor sink=virtual3
 load-module module-loopback source="alsa_input.pci-0000_00_1f.3.analog-stereo" sink=virtual3

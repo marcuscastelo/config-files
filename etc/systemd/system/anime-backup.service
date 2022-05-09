@@ -1,11 +1,15 @@
 [Unit]
 Description=Simple Animelist Backup Service
+StartLimitIntervalSec=5
 
 [Service]
-WorkingDirectory=/home/marucs/Animes/History
-ExecStart=/home/marucs/Animes/History/syncedBackup.sh
+WorkingDirectory=/home/marucs/anime-backup
+ExecStart=/home/marucs/anime-backup/syncedBackup.sh
 RemainAfterExit=true
-ExecStop=/home/marucs/Animes/History/syncedBackup.sh
+StartLimitBurst=10
+RestartSec=30
+Restart=on-failure
+ExecStop=/home/marucs/anime-backup/syncedBackup.sh
 Type=oneshot
 User=marucs
 Group=marucs

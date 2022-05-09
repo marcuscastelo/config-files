@@ -6,6 +6,7 @@ the new files in the system according to the current folders.
 
 # Create the project tree
 from dataclasses import dataclass
+from datetime import datetime
 import os
 import shutil
 from time import sleep
@@ -16,6 +17,8 @@ from utils.logger import LOGGER
 FAILED_FILES_PATH = 'failed_files.txt'
 with open(FAILED_FILES_PATH, 'w') as failed_files:
     pass
+
+BACKUP_FOLDER = 'backup'
 
 @dataclass
 class ProjectTree:
@@ -165,16 +168,18 @@ def backup(tree_path: str, sys_path: str, dest_path: 'str') -> 'None':
         parent=None # Root folder doesn't have a parent
     )
 
-    if os.path.commonpath([tree_path, dest_path]) == tree_path:
-        LOGGER.log_error(f'The destination path {dest_path} is inside the tree path {tree_path}')
-        raise Exception(f'The destination path {dest_path} is inside the tree path {tree_path}')
-
-    IGNORED_FILES_AND_FOLDERS = ['.gitignore', '.git', '.vscode', 'backup_system.py', 'requirements.txt', '__pycache__', FAILED_FILES_PATH]
-
+    IGNORED_FILES_AND_FOLDERS = ['.gitignore', '.git', '.vscode', 'backup_system.py', 'requirements.txt', '__pycache__', FAILED_FILES_PATH, BACKUP_FOLDER]
     remove_project_ignored_files(project_tree, IGNORED_FILES_AND_FOLDERS)
 
     LOGGER.log_trace(f'Project tree created')
     LOGGER.log_trace(f'Project tree: \n{project_tree.to_string(1)}')
+
+
+    if dest_path == tree_path:
+        os.rename(tree_path, f'{tree_path}_backup_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}')
+    elif os.path.commonpath([tree_path, dest_path]) == tree_path:
+        LOGGER.log_error(f'The destination path {dest_path} is inside the tree path {tree_path}')
+        raise Exception(f'The destination path {dest_path} is inside the tree path {tree_path}')
 
     if os.path.exists(dest_path) and os.path.isdir(dest_path):
         print('Destination path already exists')
@@ -189,7 +194,7 @@ def backup(tree_path: str, sys_path: str, dest_path: 'str') -> 'None':
 if __name__ == '__main__':
     cwd = os.getcwd()
     backup(
-        tree_path=cwd,
+        tree_path=os.path.join(cwd, 'backup'),
         sys_path='/',
-        dest_path='/home/marucs/testbkpdelme'
+        dest_path=os.path.join(cwd, 'backup')
     )

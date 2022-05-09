@@ -1,0 +1,22 @@
+#!/bin/bash
+ping -c 1 1.1.1.1 > /dev/null
+hascon=$? 
+[ "$hascon" -eq "0" ] && (
+	ping -c 1 "google.com" > /dev/null
+	hasdns=$?
+	[ "$hasdns" -eq "0" ] && 
+	echo "OK" || echo "Can't ping google.com: DNS problems (aborting)"
+) || (
+	echo "Couldn't ping 1.1.1.1, trying to restart ath10k kernel modules"
+
+	echo "Disabling ath10k_pci" &&
+	sudo modprobe -r ath10k_pci &&
+	echo "Disabling ath10k_core" &&
+	sudo modprobe -r ath10k_core &&
+	echo "Enabling ath10k_core" &&
+	sudo modprobe ath10k_core &&
+	echo "Enabling ath10k_pci" &&
+	sudo modprobe ath10k_pci &&
+	echo "Success" ||
+	echo "Failure :("
+);

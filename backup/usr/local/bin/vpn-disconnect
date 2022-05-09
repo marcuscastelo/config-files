@@ -1,0 +1,3 @@
+cd /usr/local/bin
+mv vpn-reconnect vpn-reconnect_dis
+nmcli c down USPNet

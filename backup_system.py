@@ -127,13 +127,13 @@ def copy_folder_tree_from_system(folder_tree: ProjectTree, system_root: str, des
     dest_folder = os.path.normpath(os.path.join(dest_root, rel_path))
 
     # Create the folder in the destination path
-    LOGGER.log_trace(f'Creating destination folder {dest_folder}')
+    # LOGGER.log_trace(f'Creating destination folder {dest_folder}')
     if not os.path.exists(dest_folder):
         # Create the folder recursively
         os.makedirs(dest_folder)
     
     # Copy the files in the folder tree
-    LOGGER.log_trace(f'Inner files: {folder_tree.files=}')
+    # LOGGER.log_trace(f'Inner files: {folder_tree.files=}')
     for file in folder_tree.files:
         relative_path = os.path.join(rel_path, file)
 
@@ -141,7 +141,7 @@ def copy_folder_tree_from_system(folder_tree: ProjectTree, system_root: str, des
         dest_file_fullname = os.path.normpath(os.path.join(dest_root, relative_path))
         system_file_fullname = os.path.normpath(os.path.join(system_root, relative_path))
 
-        LOGGER.log_trace(f'Copying file {file_fullname} from {system_file_fullname} to {dest_file_fullname}')
+        # LOGGER.log_trace(f'Copying file {file_fullname} from {system_file_fullname} to {dest_file_fullname}')
         if not os.path.exists(system_file_fullname):
             LOGGER.log_error(f'File {file_fullname} does not exist in {system_file_fullname}')
             with open(FAILED_FILES_PATH, 'a') as failed_files:
@@ -158,11 +158,12 @@ def copy_folder_tree_from_system(folder_tree: ProjectTree, system_root: str, des
         #     continue
             
         shutil.copy(system_file_fullname, dest_file_fullname)
+        shutil.copymode('requirements.txt', dest_file_fullname)
         # os.copy(os.path.join(system_root, folder_tree.name, file), os.path.join(dest_path, folder_tree.name, file))
 
     # Copy the folders in the folder tree
     for folder in folder_tree.folders:
-        LOGGER.log_trace(f'Recurse in inner folder: {folder.relative_path=}')
+        # LOGGER.log_trace(f'Recurse in inner folder: {folder.relative_path=}')
         copy_folder_tree_from_system(
             folder_tree=folder, 
             system_root=system_root,
@@ -207,14 +208,19 @@ def backup(tree_path: str, sys_path: str, dest_path: 'str') -> 'None':
 
     LOGGER.log_trace(f'Copying the project tree from {sys_path} to {dest_path}')
     sleep(1)
-    copy_folder_tree_from_system(project_tree, sys_path, dest_path)
+
+    try:
+        copy_folder_tree_from_system(project_tree, sys_path, dest_path)
+    except Exception:
+        LOGGER.log_error(f'Error copying the project tree from {sys_path} to {dest_path}')
+        raise Exception(f'Error copying the project tree from {sys_path} to {dest_path}')
 
 if __name__ == '__main__':
     cwd = os.getcwd()
     backup(
         tree_path=os.path.join(cwd, 'backup_old'),
-        sys_path=os.path.join(cwd, '/'),
-        dest_path=os.path.join(cwd, 'backup2')
+        sys_path=os.path.join('/'),
+        dest_path=os.path.join(cwd, 'backup')
     )
 
 

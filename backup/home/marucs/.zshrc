@@ -128,7 +128,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 eval $(thefuck --alias)
 
 # Pyenv
-eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 
 
 

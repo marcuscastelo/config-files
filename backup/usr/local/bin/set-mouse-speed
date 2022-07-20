@@ -19,5 +19,3 @@ xinput set-prop $device_id $accel_val_prop_id $accel_val
 echo "Setting property '$accel_prof_prop_id' to '$accel_prof'"
 echo "Command: 'xinput set-prop $device_id $accel_prof_prop_id $accel_prof'"
 xinput set-prop $device_id $accel_prof_prop_id $accel_prof 
-
-date > /home/marucs/set_mouse_speed_date_delme

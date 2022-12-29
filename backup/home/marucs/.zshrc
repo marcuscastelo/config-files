@@ -172,3 +172,5 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+
+export AUDIO_RECORDINGS_PATH="/home/marucs/Recordings"

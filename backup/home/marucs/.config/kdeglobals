@@ -97,30 +97,17 @@ ForegroundNormal=211,218,227
 ForegroundPositive=39,174,96
 ForegroundVisited=62,91,135
 
-[DirSelect Dialog]
-DirSelectDialog Size=863,582
-
 [General]
 BrowserApplication=brave-browser.desktop
 ColorSchemeHash=837e2dd2fc14b20456b7e04b85c112989dbc4783
-Name=Aritim-Dark_DEV
-XftHintStyle=hintslight
-XftSubPixel=rgb
-fixed=Noto Sans,10,-1,5,50,0,0,0,0,0
-shadeSortColumn=true
-widgetStyle=Breeze
-
-[Icons]
-Theme=breeze-dark
+SingleClick=false
+UseSystemBell=true
 
 [KDE]
-ColorScheme=BreezeLight
 LookAndFeelPackage=Aritim-Dark
 ScrollbarLeftClickNavigatesByPage=false
 ShowDeleteCommand=false
 SingleClick=false
-contrast=4
-widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false

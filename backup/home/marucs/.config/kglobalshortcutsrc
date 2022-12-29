@@ -1,5 +1,6 @@
 [ActivityManager]
 _k_friendly_name=Activity Manager
+switch-to-activity-5bc34f3c-896c-4401-802e-d3feb900d322=none,none,Switch to activity "Default"
 switch-to-activity-6a07a51f-b862-465b-b9c0-84b0759d1ce3=none,none,Switch to activity "Tracking"
 switch-to-activity-ab2eff39-787b-48ea-beea-74b2ac0aef33=none,none,Switch to activity "Default"
 switch-to-activity-f516a100-a837-41fd-9b65-c06a1e4f015c=none,none,Switch to activity "Investing"
@@ -29,8 +30,12 @@ display=Display\tMeta+P,Display\tMeta+P,Switch Display
 [khotkeys]
 _k_friendly_name=Custom Shortcuts Service
 {1c648dc3-8cbb-435b-b0f3-0074d37b671f}=none,none,KRunner
+{1eebef18-12dc-496b-91b3-5e5e61648aca}=Ctrl+Alt+Down,none,Inverted
 {28c07eea-7601-4f00-95c1-e3b6396d94d1}=Meta+F8,none,Recstart 20
 {4ab7a66d-dd7f-454f-8723-dc69e7dbc553}=Meta+A,none,Open Anilist
+{95f508a1-dd24-41ad-8ba6-bc7ce58e2cde}=Ctrl+Alt+Right,none,Right
+{a2ddb471-e868-41c9-8517-c22f04b53673}=Ctrl+Alt+Up,none,Normal
+{b125e409-d096-48cd-9237-5a13b62f58f9}=Ctrl+Alt+Left,none,Left
 {c1d396c1-7cae-441e-9739-0a50debc7dce}=Meta+F9,none,Rescstop
 {c2c4a463-7152-4018-988e-2d4bcc3d87f4}=Print,none,Flameshot screenshot
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=none,none,Search
@@ -54,10 +59,13 @@ _k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Ctrl+Alt+A,Meta+Ctrl+A,Activate Window Demanding Attention
+ClearLastMouseMark=Meta+Shift+F12,Meta+Shift+F12,Clear Last Mouse Mark
+ClearMouseMarks=Meta+Shift+F11,Meta+Shift+F11,Clear Mouse Marks
 Decrease Opacity=none,,Decrease Opacity of Active Window by 5 %
 Expose=Ctrl+F9,Ctrl+F9,Toggle Present Windows (Current desktop)
 ExposeAll=Ctrl+F10\tLaunch (C),Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
 ExposeClass=Ctrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
+ExposeClassCurrentDesktop=none,none,Toggle Present Windows (Window class on current desktop)
 Increase Opacity=none,,Increase Opacity of Active Window by 5 %
 Invert Screen Colors=none,,Invert Screen Colors
 Kill Window=Ctrl+Alt+Esc,Meta+Ctrl+Esc,Kill Window
@@ -120,7 +128,7 @@ MoveZoomRight=none,none,Move Zoomed Area to Right
 MoveZoomUp=none,none,Move Zoomed Area Upwards
 Overview=Meta+W,Meta+W,Toggle Overview
 Setup Window Shortcut=none,,Setup Window Shortcut
-Show Desktop=none,Meta+D,Show Desktop
+Show Desktop=none,Meta+D,Peek at Desktop
 ShowDesktopGrid=Ctrl+F8,Meta+F8,Show Desktop Grid
 Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Suspend Compositing
 Switch One Desktop Down=none,Meta+Ctrl+Down,Switch One Desktop Down
@@ -165,6 +173,8 @@ Switch to Screen 6=none,,Switch to Screen 6
 Switch to Screen 7=none,,Switch to Screen 7
 Toggle Night Color=none,none,Toggle Night Color
 Toggle Window Raise/Lower=none,,Toggle Window Raise/Lower
+ToggleCurrentThumbnail=Meta+Ctrl+T,Meta+Ctrl+T,Toggle Thumbnail for Current Window
+ToggleMouseClick=Meta+*,Meta+*,Toggle Mouse Click Effect
 Walk Through Desktop List=none,,Walk Through Desktop List
 Walk Through Desktop List (Reverse)=none,,Walk Through Desktop List (Reverse)
 Walk Through Desktops=none,,Walk Through Desktops
@@ -248,16 +258,16 @@ Window to Screen 6=none,,Window to Screen 6
 Window to Screen 7=none,,Window to Screen 7
 _k_friendly_name=KWin
 view_actual_size=Meta+0,Meta+0,Zoom to Actual Size
-view_zoom_in=Meta+=,Meta+=,Zoom In
+view_zoom_in=Meta+=,Meta++,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
 
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,,Media volume down
-mediavolumeup=none,,Media volume up
+mediavolumedown=none,none,Media volume down
+mediavolumeup=none,none,Media volume up
 nextmedia=Media Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,,Play media playback
+playmedia=none,none,Play media playback
 playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
@@ -316,7 +326,10 @@ activate task manager entry 6=Meta+6,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=Meta+7,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=Meta+8,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=Meta+9,Meta+9,Activate Task Manager Entry 9
-activate widget 19=Alt+F1,none,Activate Application Launcher Widget
+activate widget 19=none,none,Activate Application Launcher Widget
+activate widget 21=Alt+F1,none,Activate Application Launcher Widget
+activate widget 23=none,none,Activate Application Launcher Widget
+activate widget 28=none,none,Activate Application Launcher Widget
 clear-history=none,,Clear Clipboard History
 clipboard_action=Ctrl+Alt+X,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels

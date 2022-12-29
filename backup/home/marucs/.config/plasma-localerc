@@ -1,4 +1,8 @@
 [Formats]
 LANG=en_US.UTF-8
-LC_TIME=pt_BR.UTF-8
-useDetailed=true
+LC_MEASUREMENT=pt_BR.UTF-8
+LC_MONETARY=pt_BR.UTF-8
+LC_TIME=en_GB.UTF-8
+
+[Translations]
+LANGUAGE=en_US:pt_BR

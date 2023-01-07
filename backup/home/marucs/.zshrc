@@ -171,6 +171,3 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
-
-
-export AUDIO_RECORDINGS_PATH="/home/marucs/Recordings"

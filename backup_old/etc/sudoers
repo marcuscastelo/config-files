@@ -77,13 +77,9 @@
 ## User privilege specification
 ##
 root ALL=(ALL) ALL
-marucs ALL=(ALL) ALL
-
-Defaults passwd_timeout=0
-Defaults !tty_tickets
 
 ## Uncomment to allow members of group wheel to execute any command
-# %wheel ALL=(ALL) ALL
+%wheel ALL=(ALL) ALL
 
 ## Same thing without a password
 # %wheel ALL=(ALL) NOPASSWD: ALL
@@ -97,5 +93,4 @@ Defaults !tty_tickets
 # ALL ALL=(ALL) ALL  # WARNING: only use this together with 'Defaults targetpw'
 
 ## Read drop-in files from /etc/sudoers.d
-## (the '#' here does not indicate a comment)
-#includedir /etc/sudoers.d
+@includedir /etc/sudoers.d

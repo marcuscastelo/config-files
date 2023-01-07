@@ -127,6 +127,14 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # TheFuck
 eval $(thefuck --alias)
 
+# Pyenv
+eval "$(pyenv init -)"
+
+
+
+
+
+
 
 
 
@@ -163,3 +171,6 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
+
+
+export AUDIO_RECORDINGS_PATH="/home/marucs/Recordings"

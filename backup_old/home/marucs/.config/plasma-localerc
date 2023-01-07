@@ -1,4 +1,8 @@
 [Formats]
 LANG=en_US.UTF-8
-LC_TIME=pt_BR.UTF-8
-useDetailed=true
+LC_MEASUREMENT=C
+LC_PAGE=C
+LC_TIME=C
+
+[Translations]
+LANGUAGE=en_US

@@ -11,3 +11,6 @@ PS1='[\u@\h \W]\$ '
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 source .aliases
+source .profile
+eval "$(pyenv virtualenv-init -)"
+. "$HOME/.cargo/env"

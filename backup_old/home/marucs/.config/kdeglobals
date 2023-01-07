@@ -2,11 +2,13 @@
 update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,icons_remove_effects.upd:IconsRemoveEffects,kwin.upd:animation-speed,style_widgetstyle_default_breeze.upd:StyleWidgetStyleDefaultBreeze
 
 [ColorEffects:Disabled]
+ChangeSelectionColor=
 Color=56,56,56
 ColorAmount=0.1
 ColorEffect=1
 ContrastAmount=0.6000000000000001
 ContrastEffect=1
+Enable=
 IntensityAmount=0.1
 IntensityEffect=2
 
@@ -36,46 +38,8 @@ ForegroundPositive=39,174,96
 ForegroundVisited=62,91,135
 
 [Colors:Complementary]
-BackgroundAlternate=30,87,116
-BackgroundNormal=42,46,50
 DecorationFocus=76,99,125
 DecorationHover=76,99,125
-ForegroundActive=61,174,233
-ForegroundInactive=161,169,177
-ForegroundLink=29,153,243
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=252,252,252
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
-
-[Colors:Header]
-BackgroundAlternate=42,46,50
-BackgroundNormal=49,54,59
-DecorationFocus=61,174,233
-DecorationHover=61,174,233
-ForegroundActive=61,174,233
-ForegroundInactive=161,169,177
-ForegroundLink=29,153,243
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=252,252,252
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
-
-[Colors:Header][Inactive]
-BackgroundAlternate=49,54,59
-BackgroundNormal=42,46,50
-DecorationFocus=61,174,233
-DecorationHover=61,174,233
-ForegroundActive=61,174,233
-ForegroundInactive=161,169,177
-ForegroundLink=29,153,243
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=252,252,252
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
 
 [Colors:Selection]
 BackgroundAlternate=76,99,125
@@ -134,22 +98,16 @@ ForegroundPositive=39,174,96
 ForegroundVisited=62,91,135
 
 [General]
-BrowserApplication=google-chrome.desktop
-ColorScheme=AritimDark
-Name=Aritim-Dark_DEV
-shadeSortColumn=true
-widgetStyle=Breeze
-
-[Icons]
-Theme=breeze-dark
+BrowserApplication=brave-browser.desktop
+ColorSchemeHash=837e2dd2fc14b20456b7e04b85c112989dbc4783
+SingleClick=false
+UseSystemBell=true
 
 [KDE]
-ColorScheme=BreezeLight
 LookAndFeelPackage=Aritim-Dark
 ScrollbarLeftClickNavigatesByPage=false
+ShowDeleteCommand=false
 SingleClick=false
-contrast=4
-widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false
@@ -166,6 +124,7 @@ Show Speedbar=true
 Show hidden files=false
 Sort by=Name
 Sort directories first=true
+Sort hidden files last=false
 Sort reversed=false
 Speedbar Width=152
 View Style=DetailTree
@@ -178,7 +137,7 @@ MaximumRemoteSize=0
 
 [WM]
 activeBackground=20,26,33,216
-activeBlend=252,252,252
+activeBlend=20,26,33
 activeForeground=211,218,227
 inactiveBackground=47,52,63
 inactiveBlend=47,52,63

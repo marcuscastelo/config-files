@@ -1,9 +1,108 @@
+[$Version]
+update_info=konsole_globalaccel.upd:konsole_globalaccel,spectacle_shortcuts.upd:spectacle-migrate-shortcuts
+
+[ColorEffects:Disabled]
+ChangeSelectionColor[$d]
+Color[$d]
+ColorAmount[$d]
+ColorEffect[$d]
+ContrastAmount[$d]
+ContrastEffect[$d]
+Enable[$d]
+IntensityAmount[$d]
+IntensityEffect[$d]
+
+[ColorEffects:Inactive]
+ChangeSelectionColor[$d]
+Color[$d]
+ColorAmount[$d]
+ColorEffect[$d]
+ContrastAmount[$d]
+ContrastEffect[$d]
+Enable[$d]
+IntensityAmount[$d]
+IntensityEffect[$d]
+
+[Colors:Button]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
+[Colors:Complementary]
+DecorationFocus[$d]
+DecorationHover[$d]
+
+[Colors:Selection]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
+[Colors:Tooltip]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
+[Colors:View]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
+[Colors:Window]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
 [Data]
-DataCount=3
+DataCount=9
 
 [Data_1]
 Comment=KMenuEdit Global Shortcuts
-DataCount=2
+DataCount=1
 Enabled=true
 Name=KMenuEdit
 SystemGroup=1
@@ -38,32 +137,6 @@ TriggersCount=1
 Key=
 Type=SHORTCUT
 Uuid={d03619b6-9b3c-48cc-9d9c-a2aadb485550}
-
-[Data_1_2]
-Comment=Global keyboard shortcut to launch Konsole
-Enabled=true
-Name=Launch Konsole
-Type=MENUENTRY_SHORTCUT_ACTION_DATA
-
-[Data_1_2Actions]
-ActionsCount=1
-
-[Data_1_2Actions0]
-CommandURL=org.kde.konsole.desktop
-Type=MENUENTRY
-
-[Data_1_2Conditions]
-Comment=
-ConditionsCount=0
-
-[Data_1_2Triggers]
-Comment=Simple_action
-TriggersCount=1
-
-[Data_1_2Triggers0]
-Key=Ctrl+Alt+T
-Type=SHORTCUT
-Uuid={1bb6b1f6-2aad-4ace-8574-6227b60e9825}
 
 [Data_2]
 Comment=This group contains various examples demonstrating most of the features of KHotkeys. (Note that this group and all its actions are disabled by default.)
@@ -882,6 +955,269 @@ TriggersCount=1
 GesturePointData=0,0.0625,-0.5,0.5,1,0.0625,0.0625,-0.5,0.5,0.875,0.125,0.0625,-0.5,0.5,0.75,0.1875,0.0625,-0.5,0.5,0.625,0.25,0.0625,-0.5,0.5,0.5,0.3125,0.0625,-0.5,0.5,0.375,0.375,0.0625,-0.5,0.5,0.25,0.4375,0.0625,-0.5,0.5,0.125,0.5,0.0625,0.5,0.5,0,0.5625,0.0625,0.5,0.5,0.125,0.625,0.0625,0.5,0.5,0.25,0.6875,0.0625,0.5,0.5,0.375,0.75,0.0625,0.5,0.5,0.5,0.8125,0.0625,0.5,0.5,0.625,0.875,0.0625,0.5,0.5,0.75,0.9375,0.0625,0.5,0.5,0.875,1,0,0,0.5,1
 Type=GESTURE
 
+[Data_4]
+Comment=Comment
+Enabled=true
+Name=Flameshot screenshot
+Type=SIMPLE_ACTION_DATA
+
+[Data_4Actions]
+ActionsCount=1
+
+[Data_4Actions0]
+CommandURL=flameshot gui
+Type=COMMAND_URL
+
+[Data_4Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_4Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_4Triggers0]
+Key=Print
+Type=SHORTCUT
+Uuid={c2c4a463-7152-4018-988e-2d4bcc3d87f4}
+
+[Data_5]
+Comment=Comment
+Enabled=true
+Name=KRunner
+Type=SIMPLE_ACTION_DATA
+
+[Data_5Actions]
+ActionsCount=1
+
+[Data_5Actions0]
+CommandURL=krunner
+Type=COMMAND_URL
+
+[Data_5Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_5Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_5Triggers0]
+Key=
+Type=SHORTCUT
+Uuid={1c648dc3-8cbb-435b-b0f3-0074d37b671f}
+
+[Data_6]
+Comment=Comment
+Enabled=true
+Name=Recstart 20
+Type=SIMPLE_ACTION_DATA
+
+[Data_6Actions]
+ActionsCount=1
+
+[Data_6Actions0]
+CommandURL=recstart 20
+Type=COMMAND_URL
+
+[Data_6Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_6Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_6Triggers0]
+Key=Meta+F8
+Type=SHORTCUT
+Uuid={28c07eea-7601-4f00-95c1-e3b6396d94d1}
+
+[Data_7]
+Comment=Comment
+Enabled=true
+Name=Rescstop
+Type=SIMPLE_ACTION_DATA
+
+[Data_7Actions]
+ActionsCount=1
+
+[Data_7Actions0]
+CommandURL=recstop
+Type=COMMAND_URL
+
+[Data_7Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_7Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_7Triggers0]
+Key=Meta+F9
+Type=SHORTCUT
+Uuid={c1d396c1-7cae-441e-9739-0a50debc7dce}
+
+[Data_8]
+Comment=Comment
+Enabled=true
+Name=Open Anilist
+Type=SIMPLE_ACTION_DATA
+
+[Data_8Actions]
+ActionsCount=1
+
+[Data_8Actions0]
+CommandURL=code-insiders /home/marucs/anime-backup
+Type=COMMAND_URL
+
+[Data_8Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_8Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_8Triggers0]
+Key=Meta+A
+Type=SHORTCUT
+Uuid={4ab7a66d-dd7f-454f-8723-dc69e7dbc553}
+
+[Data_9]
+Comment=Commentaire
+DataCount=4
+Enabled=true
+ImportId=Screen Rotate
+Name=Rotate Screen
+SystemGroup=0
+Type=ACTION_DATA_GROUP
+
+[Data_9Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_9_1]
+Comment=Commentaire
+Enabled=true
+Name=Normal
+Type=SIMPLE_ACTION_DATA
+
+[Data_9_1Actions]
+ActionsCount=1
+
+[Data_9_1Actions0]
+CommandURL=xrandr --output $(xrandr --listactivemonitors | grep "1:"  | awk '{ print $4 }') --rotate normal
+Type=COMMAND_URL
+
+[Data_9_1Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_9_1Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_9_1Triggers0]
+Key=Ctrl+Alt+Up
+Type=SHORTCUT
+Uuid={a2ddb471-e868-41c9-8517-c22f04b53673}
+
+[Data_9_2]
+Comment=Commentaire
+Enabled=true
+Name=Left
+Type=SIMPLE_ACTION_DATA
+
+[Data_9_2Actions]
+ActionsCount=1
+
+[Data_9_2Actions0]
+CommandURL=xrandr --output $(xrandr --listactivemonitors | grep "1:"  | awk '{ print $4 }') --rotate left
+Type=COMMAND_URL
+
+[Data_9_2Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_9_2Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_9_2Triggers0]
+Key=Ctrl+Alt+Left
+Type=SHORTCUT
+Uuid={b125e409-d096-48cd-9237-5a13b62f58f9}
+
+[Data_9_3]
+Comment=Commentaire
+Enabled=true
+Name=Right
+Type=SIMPLE_ACTION_DATA
+
+[Data_9_3Actions]
+ActionsCount=1
+
+[Data_9_3Actions0]
+CommandURL=xrandr --output $(xrandr --listactivemonitors | grep "1:"  | awk '{ print $4 }') --rotate right
+Type=COMMAND_URL
+
+[Data_9_3Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_9_3Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_9_3Triggers0]
+Key=Ctrl+Alt+Right
+Type=SHORTCUT
+Uuid={95f508a1-dd24-41ad-8ba6-bc7ce58e2cde}
+
+[Data_9_4]
+Comment=Commentaire
+Enabled=true
+Name=Inverted
+Type=SIMPLE_ACTION_DATA
+
+[Data_9_4Actions]
+ActionsCount=1
+
+[Data_9_4Actions0]
+CommandURL=xrandr --output $(xrandr --listactivemonitors | grep "1:"  | awk '{ print $4 }') --rotate inverted
+Type=COMMAND_URL
+
+[Data_9_4Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_9_4Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_9_4Triggers0]
+Key=Ctrl+Alt+Down
+Type=SHORTCUT
+Uuid={1eebef18-12dc-496b-91b3-5e5e61648aca}
+
+[DirSelect Dialog]
+DirSelectDialog Size[$d]
+
+[General]
+BrowserApplication[$d]
+ColorScheme[$d]
+ColorSchemeHash[$d]
+Name[$d]
+SingleClick[$d]
+UseSystemBell[$d]
+XftHintStyle[$d]
+XftSubPixel[$d]
+fixed[$d]
+shadeSortColumn[$d]
+widgetStyle[$d]
+
 [Gestures]
 Disabled=true
 MouseButton=2
@@ -891,10 +1227,56 @@ Timeout=300
 Comment=
 WindowsCount=0
 
+[Icons]
+Theme[$d]
+
+[KDE]
+ColorScheme[$d]
+LookAndFeelPackage[$d]
+ScrollbarLeftClickNavigatesByPage[$d]
+ShowDeleteCommand[$d]
+SingleClick[$d]
+contrast[$d]
+widgetStyle[$d]
+
+[KFileDialog Settings]
+Allow Expansion[$d]
+Automatically select filename extension[$d]
+Breadcrumb Navigation[$d]
+Decoration position[$d]
+LocationCombo Completionmode[$d]
+PathCombo Completionmode[$d]
+Show Bookmarks[$d]
+Show Full Path[$d]
+Show Inline Previews[$d]
+Show Preview[$d]
+Show Speedbar[$d]
+Show hidden files[$d]
+Sort by[$d]
+Sort directories first[$d]
+Sort hidden files last[$d]
+Sort reversed[$d]
+Speedbar Width[$d]
+View Style[$d]
+
+[KShortcutsDialog Settings]
+Dialog Size[$d]
+
 [Main]
-AlreadyImported=defaults,kde32b1,konqueror_gestures_kde321,konsole
+AlreadyImported=defaults,kde32b1,konqueror_gestures_kde321,konsole,Screen Rotate
 Disabled=false
 Version=2
 
+[PreviewSettings]
+MaximumRemoteSize[$d]
+
 [Voice]
 Shortcut=
+
+[WM]
+activeBackground[$d]
+activeBlend[$d]
+activeForeground[$d]
+inactiveBackground[$d]
+inactiveBlend[$d]
+inactiveForeground[$d]

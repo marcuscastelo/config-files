@@ -8,3 +8,10 @@ function uspname() {
 	echo $(wget --server-response https://www.icmc.usp.br/pessoas\?id\=$id 2>&1) | egrep -Eo 'imgNome=([A-Za-zçáéíóúãĩõũêâîûâñÇÁÉÍÓÚÃĨÕŨÊÂÎÛÂÑ +]+)' | sed 's/\+/ /g' | sed 's/imgNome=//g'
 }
 
+function uspnumber() {
+	name=$1
+	ids=$(echo $(curl 'https://icmc.usp.br/templates/icmc2015/php/pessoas.php' --data-urlencode "nome=$name" --data-raw 'grupo=&depto=&pagina=1&titulo=' 2>&1) | egrep -Eo '<!--<a href="\?id=([0-9]+)' | sed 's/<!--<a href="?id=//g')
+	for id in $=ids; do
+		echo $(( ($id - 3) / 2 ));
+	done
+}

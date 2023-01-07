@@ -130,7 +130,7 @@ def copy_folder_tree_from_system(folder_tree: ProjectTree, system_root: str, des
     # LOGGER.log_trace(f'Creating destination folder {dest_folder}')
     if not os.path.exists(dest_folder):
         # Create the folder recursively
-        os.makedirs(dest_folder)
+        os.makedirs(dest_folder, 0o777, exist_ok=True)
     
     # Copy the files in the folder tree
     # LOGGER.log_trace(f'Inner files: {folder_tree.files=}')
@@ -204,7 +204,7 @@ def backup(tree_path: str, sys_path: str, dest_path: 'str') -> 'None':
         print('Destination path already exists')
         input(f'Press enter to delete {dest_path} ...')
         shutil.rmtree(dest_path)
-        os.mkdir(dest_path)
+        os.mkdir(dest_path, 0o777)
 
     LOGGER.log_trace(f'Copying the project tree from {sys_path} to {dest_path}')
     sleep(1)
@@ -224,5 +224,6 @@ if __name__ == '__main__':
     )
 
 
+# TODO: stop creating backup folder as root (or at least give permissions to the user)
 # TODO: if not foudn on sys_path, copy from tree_path (to avoid removing valid files)
 # TODO: "install" tree_path to sys_path (reverse of backup)

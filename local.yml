@@ -1,11 +1,6 @@
 - become: true
   connection: local
   hosts: localhost
-
+  
   tasks:
-  - ansible.builtin.package:
-      name: 
-        - zsh
-        - gcc
-        - make
-    name: Install htop
+    - include: tasks/packages.yml

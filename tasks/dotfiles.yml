@@ -1,0 +1,4 @@
+- copy:
+    dest: ~/.zshrc
+    src: backup/home/marucs/.zshrc
+  name: "Copy .zshrc"

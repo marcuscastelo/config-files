@@ -1,8 +1,11 @@
-- hosts: localhost
+- become: true
   connection: local
-  become: true
+  hosts: localhost
 
   tasks:
-  - name: Install htop
-    apt:
-      name: htop
+  - ansible.builtin.package:
+      name: 
+        - zsh
+        - gcc
+        - make
+    name: Install htop

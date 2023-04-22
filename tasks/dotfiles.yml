@@ -2,3 +2,7 @@
     dest: ~/.zshrc
     src: backup/home/marucs/.zshrc
   name: "Copy .zshrc"
+- copy:
+    dest: ~/.profile
+    src: backup/home/marucs/.profile
+  name: "Copy .profile"

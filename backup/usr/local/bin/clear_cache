@@ -14,6 +14,8 @@ function clear_weekly() {
 
 input="$1"
 
+input='daily' # TODO: determine based on dates instead of using snooze and input
+
 ([ "$input" == "daily" ] && clear_daily) ||
 ([ "$input" == "weekly" ] && clear_weekly ) ||
 echo "'$input' is not a valid parameter (valid: daily, weekly)"

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e;
+exec 2>&1;
+
+while true; do
+  snooze -v -H'*' -M/5 clear_cache;
+done;

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+exec 2>&1;
+
+echo "[ath10k_check] Starting ath10k_check daemon";
+while true; do
+  echo "[ath10k_check] Checking internet connection...";
+  snooze -v -H/'*' -M/1 /usr/local/bin/ath10k_check;
+done;
+

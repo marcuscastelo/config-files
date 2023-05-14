@@ -4,10 +4,13 @@ BACKUP_FOLDER='backup/'
 [ -d "$BACKUP_FOLDER" ] || (echo "Backup folder not found: '$BACKUP_FOLDER'" && exit 1);
 [ -t $? ] || exit 1
 
-FOLDER='etc/runit/'
+function backup_folder() {
+  FOLDER="$1"
+  cmd="sudo rsync -rvcauEgoptUWX /$FOLDER $(pwd)/$BACKUP_FOLDER$FOLDER"
+  echo "> $cmd"
+  $cmd
+  echo
+}
 
-echo "sudo rsync -rvcauEgoptUWX /$FOLDER $(pwd)/$BACKUP_FOLDER$FOLDER"
-
-FOLDER='usr/share/X11/symbols/'
-
-echo "sudo rsync -rvcaEgoptUWX /$FOLDER $(pwd)/$BACKUP_FOLDER$FOLDER"
+backup_folder 'etc/runit/'
+backup_folder 'usr/share/X11/symbols/'

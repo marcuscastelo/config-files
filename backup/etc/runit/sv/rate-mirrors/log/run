@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1; set -e
+
+[ -d /var/log/rate-mirrors ] || install -dm 755 /var/log/rate-mirrors
+exec svlogd -tt /var/log/rate-mirrors

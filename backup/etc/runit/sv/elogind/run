@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+sv start dbus >/dev/null
+exec /usr/lib/elogind/elogind

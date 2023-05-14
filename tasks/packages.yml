@@ -1,0 +1,7 @@
+- ansible.builtin.package:
+    name: 
+      - zsh
+      - gcc
+      - make
+    state: present
+  name: Install Packages 

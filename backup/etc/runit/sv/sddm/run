@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+exec 2>&1
+echo "SDDM: checking logind" 
+sv check logind >/dev/null || exit 1
+echo "SDDM: logind OK" 
+echo "SDDM: checking optimus-manager" 
+sv check optimus-manager > /dev/null || exit 1
+echo "SDDM: optimus-manager OK" 
+mkdir -p /var/lib/sddm
+chown -R sddm:sddm /var/lib/sddm
+exec sddm 2>&1

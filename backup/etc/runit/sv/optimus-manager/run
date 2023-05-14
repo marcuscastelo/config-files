@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+exec 2>&1
+echo "Optimus manager: Start of RUN script"
+echo "Optimus manager: Starting..."
+echo "Optimus manager: Running pre dameon hook..."
+/usr/bin/python3 -u -m optimus_manager.hooks.pre_daemon_start
+echo "Optimus manager: Running pre xorg hook..."
+/usr/bin/python3 -u -m optimus_manager.hooks.pre_xorg_start
+echo "Optimus manager: All OK! Running daemon..."
+exec python3 -u -m optimus_manager.daemon
+echo "Optimus manager: Seems like Optimus Manager was killed. End of RUN script"

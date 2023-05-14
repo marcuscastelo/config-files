@@ -1,0 +1,25 @@
+#!/bin/bash
+
+PATH=/usr/bin:/usr/sbin
+
+. /usr/lib/rc/functions
+
+stat_busy "Stop services ..."
+sv force-stop /run/runit/service/*
+stat_done
+stat_busy "Exit services ..."
+sv exit /run/runit/service/*
+stat_done
+
+# Hacky hacky OpenRC compatibility
+for script in /etc/local.d/*.stop; do
+    [ -x "$script" ] && "$script"
+done
+
+run_shutdown
+
+if [ -e /run/runit/reboot ]; then
+    [[ -x $(type -P kexec) ]] && kexec -e &>/dev/null
+fi
+
+status "Stage 3 completed."

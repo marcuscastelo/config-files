@@ -1,0 +1,40 @@
+#!/bin/sh
+USER=marucs
+set -e
+
+function update() {
+  echo "rate-mirrors: update()"
+  echo "rate-mirrors: create tmp folder"
+  mkdir -p /tmp/etc/pacman.d
+  
+  echo "rate-mirrors: test internet"
+  ping -c 1 1.1.1.1 &>/dev/null
+
+  echo "rate-mirrors: set +e"
+  set +e
+
+  echo "------ Updating Artix mirrors ------"
+  sudo -u "$USER" rate-mirrors --protocol https artix | tee /tmp/etc/pacman.d/mirrorlist
+  echo "------ Updating Arch mirrors ------"
+  sudo -u "$USER" rate-mirrors --protocol https arch | tee /tmp/etc/pacman.d/mirrorlist-arch
+  echo "-----------------------------------"
+
+  echo "rate-mirrors: set -e"
+  set -e
+
+  echo 'DONE! COPYING TO PACMAN.D'
+  cp /tmp/etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist
+  cp /tmp/etc/pacman.d/mirrorlist-arch /etc/pacman.d/mirrorlist-arch
+}
+
+echo "------ FIRST RUN ------"
+echo 'rate-mirrors: wating 30 seconds...'
+sleep 30
+echo 'rate-mirrors: running...'
+update
+echo 'rate-mirrors: first run finished!'
+
+while true; do
+  echo "------ RESCHEDULING ------"
+  snooze -v -H/6 update;
+done

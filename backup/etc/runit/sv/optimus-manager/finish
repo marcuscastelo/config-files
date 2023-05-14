@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+echo 2>&1
+echo "Optimus manager: Start of FINISH script"
+echo "Optimus manager: Starting post daemon hook..."
+python3 -u -m optimus_manager.hooks.post_daemon_stop
+echo "Optimus manager: End of FINISH script"

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PATH=/usr/bin:/usr/sbin
+
+. /usr/lib/rc/functions
+
+run_sysinit
+
+install -m000 /dev/null /run/runit/stopit
+install -m000 /dev/null /run/runit/reboot
+
+status "Initialization complete"

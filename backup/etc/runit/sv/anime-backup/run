@@ -1,0 +1,13 @@
+#!/bin/sh
+WORKING_DIR=/home/marucs/anime-backup/
+USER=marucs
+
+cd "$WORKING_DIR"
+
+echo "Deleting old backups"
+sudo -u "$USER" python delete_old.py
+
+while true; do
+ echo "Scheduling Anime Backup with snooze..."
+ snooze -H'*' -M/30 sudo -u "$USER" ./syncedBackup.sh;
+done

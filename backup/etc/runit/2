@@ -1,0 +1,23 @@
+#!/bin/bash
+
+PATH=/usr/bin:/usr/sbin
+
+runlevel=default
+for arg in $(cat /proc/cmdline); do
+    if [ -d /etc/runit/runsvdir/"$arg" ]; then
+        echo "Runlevel detected: '$arg' (via kernel cmdline)"
+        runlevel="$arg"
+    fi
+done
+
+# Hacky hacky OpenRC compatibility
+for script in /etc/local.d/*.start; do
+    [ -x "$script" ] && "$script"
+done
+
+runsvchdir "${runlevel}"
+
+ln -s /etc/runit/runsvdir/current /run/runit/service
+
+exec env - PATH=$PATH \
+runsvdir -P /run/runit/service 'log: ...........................................................................................................................................................................................................................................................................................................................................................................................................'

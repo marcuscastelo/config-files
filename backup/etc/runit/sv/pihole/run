@@ -1,0 +1,2 @@
+#!/bin/sh
+exec pihole-FTL -f 2>&1

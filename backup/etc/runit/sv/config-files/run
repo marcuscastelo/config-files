@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e;
+exec 2>&1;
+
+cd /home/marucs/config-files
+BACKUP='/home/marucs/config-files/backup.sh'
+UPLOAD='/home/marucs/config-files/upload.sh'
+
+function synced_backup() {
+  $BACKUP
+  $UPLOAD
+}
+
+synced_backup;
+while true; do
+  snooze -H/1 synced_backup;
+done;
+
+

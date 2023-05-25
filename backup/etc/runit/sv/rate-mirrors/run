@@ -21,10 +21,14 @@ function update() {
 
   echo "rate-mirrors: set -e"
   set -e
-
-  echo 'DONE! COPYING TO PACMAN.D'
-  cp /tmp/etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist
-  cp /tmp/etc/pacman.d/mirrorlist-arch /etc/pacman.d/mirrorlist-arch
+ 
+  echo 'DONE! STARTING COPY TO PACMAN.D'
+  grep -q 'MIRRORS LEFT AFTER FILTERING: 0' /tmp/etc/pacman.d/mirrorlist &&\
+    echo 'Copying Artix mirrors...' && cp /tmp/etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist ||\
+    echo 'Ignoring Artix mirrors: too few'
+  grep -q 'MIRRORS LEFT AFTER FILTERING: 0' /tmp/etc/pacman.d/mirrorlist-arch &&\
+    echo 'Copying Arch mirrors...' && cp /tmp/etc/pacman.d/mirrorlist-arch /etc/pacman.d/mirrorlist-arch ||\
+    echo 'Ignoring Arch mirrors: too few'
 }
 
 echo "------ FIRST RUN ------"

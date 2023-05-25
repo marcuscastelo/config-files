@@ -8,8 +8,8 @@ BACKUP='/home/marucs/config-files/backup.sh'
 UPLOAD='/home/marucs/config-files/upload.sh'
 
 function synced_backup() {
-  $BACKUP
-  $UPLOAD
+  sudo -u marucs zsh -c "sudo $BACKUP"
+  sudo -u marucs zsh -c "sudo $UPLOAD"
 }
 
 synced_backup;
